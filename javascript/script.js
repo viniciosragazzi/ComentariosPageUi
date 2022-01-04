@@ -1,11 +1,12 @@
 const commentsArea = document.querySelector(".comments-area");
+const newCommentArea = document.querySelector(".newComment-area");
+
 fetch("data.json")
   .then((response) => response.json())
   .then((data) => {
-    console.log(data.comments.length);
+
 
     function imprimir(element, indice) {
-      console.log(indice);
 
       commentsArea.innerHTML += `<div class="comment">
         <div class="score-area">
@@ -39,6 +40,8 @@ fetch("data.json")
       </div>
       
       `;
+
+
       if (data.comments[indice].replies.length > 0) {
         function imprimirReply(el, i) {
           commentsArea.innerHTML += `<div class="reply-area">
@@ -81,9 +84,16 @@ fetch("data.json")
 
         data.comments[indice].replies.forEach(imprimirReply);
       }
+
+
     }
+
     data.comments.forEach(imprimir);
-    commentsArea.innerHTML += `  <div class="add-comment-area">
+
+
+
+    // Area para add novos comentários
+    newCommentArea.innerHTML += `  <div class="add-comment-area">
     <div class="user-img-area">
       <img src="${data.currentUser.image.png}" alt="${data.currentUser.username}_image" class="user-img">
     </div>
@@ -92,4 +102,54 @@ fetch("data.json")
       <input type="submit" value="SEND" class="enviar">
     </form>
   </div>`;
+//************************************************************ */
+
+
+    const form = document
+      .querySelector("form")
+      .addEventListener("submit", (ev) => {
+        ev.preventDefault();
+        const textArea = document.querySelector("#inputComment").value;
+        let commentsClone = { ...data.comments[0] };
+        commentsClone.id = data.comments.length + 1;
+        commentsClone.content = textArea;
+        commentsClone.createdAt = "2 seconds ago";
+        commentsClone.score = 0;
+        commentsClone.user.image.png = data.currentUser.image.png;
+        commentsClone.user.username = data.currentUser.username;
+        data.comments.push(commentsClone);
+        commentsArea.innerHTML += `<div class="comment">
+        <div class="score-area">
+          <span class="score-incremment">+</span>
+          <span class="score-number">${commentsClone.score }</span>
+          <span class="score-decremment">-</span>
+        </div>
+  
+        <div class="comment-content">
+          <div class="comment-top">
+            <div class="infos-area">
+              <div class="comment-min-picture">
+                <img src="${commentsClone.user.image.png}" alt="comment-pic">
+              </div>
+              <span class="username-comment">${commentsClone.user.username}</span>
+              <span class="createdAt-comment">${commentsClone.createdAt}</span>
+            </div>
+    
+            <span class="action-btn">
+              Reply
+            </span>
+          </div>
+          <div class="comment-txt-area">
+            <span class="comment-txt">
+            ${commentsClone.content}
+  
+            </span>
+          </div>
+        </div>
+       
+      </div>
+      
+      `;
+        console.log(data.comments);
+      });
   });

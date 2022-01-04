@@ -31,6 +31,10 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -160,6 +164,8 @@ body {
 
 .comments-area .comment-content .comment-txt-area {
   padding: 10px;
+  width: 90%;
+  overflow: hidden;
 }
 
 .comments-area .comment-content .comment-txt-area .comment-txt {
@@ -262,7 +268,26 @@ body {
   font-size: 11px;
 }
 
-.comments-area .add-comment-area {
+.newComment-area {
+  width: 750px;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding-bottom: 50px;
+}
+
+.newComment-area .add-comment-area {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -278,15 +303,15 @@ body {
   border-radius: 5px;
 }
 
-.comments-area .add-comment-area .user-img-area {
+.newComment-area .add-comment-area .user-img-area {
   margin: 5px;
 }
 
-.comments-area .add-comment-area .user-img-area img {
+.newComment-area .add-comment-area .user-img-area img {
   width: 33px;
 }
 
-.comments-area .add-comment-area form {
+.newComment-area .add-comment-area form {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -298,7 +323,7 @@ body {
       justify-content: space-around;
 }
 
-.comments-area .add-comment-area form #inputComment {
+.newComment-area .add-comment-area form #inputComment {
   margin: 0px;
   width: 80%;
   height: 91px;
@@ -307,16 +332,24 @@ body {
   padding: 8px;
 }
 
-.comments-area .add-comment-area form #inputComment:focus {
+.newComment-area .add-comment-area form #inputComment:focus {
   -webkit-box-shadow: none;
           box-shadow: none;
 }
 
-.comments-area .add-comment-area form input.enviar {
+.newComment-area .add-comment-area form input.enviar {
   padding: 5px 5%;
   color: white;
   background-color: var(--main-color);
   border: none;
   border-radius: 5px;
+  -webkit-transition: .2s ease-in-out all;
+  transition: .2s ease-in-out all;
+  cursor: pointer;
+}
+
+.newComment-area .add-comment-area form input.enviar:hover {
+  background-color: var(--hover-color);
+  color: var(--main-color);
 }
 /*# sourceMappingURL=style.css.map */

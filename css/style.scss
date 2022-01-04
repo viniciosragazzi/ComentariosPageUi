@@ -26,6 +26,7 @@ body {
   background-color: var(--bg-color);
   position: relative;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding-top: 50px;
@@ -111,6 +112,8 @@ body {
     }
     .comment-txt-area {
       padding: 10px;
+      width: 90%;
+      overflow: hidden;
       .comment-txt {
         font-size: 12px;
       }
@@ -192,6 +195,16 @@ body {
       }
     }
   }
+  
+}
+.newComment-area{
+  width: 750px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  flex-direction: column;
+  padding-bottom: 50px;
   .add-comment-area {
     display: flex;
     width: 80%;
@@ -231,6 +244,12 @@ body {
           background-color: var(--main-color);
           border: none;
           border-radius: 5px;
+          transition: .2s ease-in-out all;
+          cursor: pointer;
+          &:hover{
+            background-color: var(--hover-color);
+            color: var(--main-color);
+          }
         }
       }
     }
